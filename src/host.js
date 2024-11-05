@@ -32,16 +32,16 @@ const bench = new URL("./bench.js", import.meta.url)
 const benches = [
   { instrumented: "none", port: 8080, argv: [], env: {} },
   {
-    instrumented: "legacy",
-    port: 7979,
-    argv: ["--import=solarwinds-apm"],
-    env: { SW_APM_LEGACY: String(true) },
-  },
-  {
     instrumented: "js",
     port: 8181,
     argv: ["--import=solarwinds-apm"],
     env: {},
+  },
+  {
+    instrumented: "legacy",
+    port: 8282,
+    argv: ["--import=solarwinds-apm"],
+    env: { SW_APM_LEGACY: String(true) },
   },
 ]
 
