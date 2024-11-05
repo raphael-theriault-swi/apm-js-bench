@@ -30,7 +30,12 @@ const memory = {
 
 const bench = new URL("./bench.js", import.meta.url)
 const benches = [
-  { instrumented: "none", port: 8080, argv: [], env: {} },
+  {
+    instrumented: "none",
+    port: 8080,
+    argv: [],
+    env: {},
+  },
   {
     instrumented: "js",
     port: 8181,
@@ -41,7 +46,7 @@ const benches = [
     instrumented: "legacy",
     port: 8282,
     argv: ["--import=solarwinds-apm"],
-    env: { SW_APM_LEGACY: String(true), GRPC_DNS_RESOLVER: "native" },
+    env: { SW_APM_LEGACY: String(true) },
   },
 ]
 
