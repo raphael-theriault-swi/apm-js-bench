@@ -68,6 +68,10 @@ for await (const _ of setInterval(interval)) {
   })
 
   try {
-    await Promise.all(tasks)
-  } catch {}
+    await Promise.allSettled(tasks)
+  } catch (errors) {
+    for (const error of errors.filter((error) => !!error)) {
+      console.error(error)
+    }
+  }
 }
