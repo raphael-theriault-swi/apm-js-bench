@@ -50,16 +50,21 @@ const benches = [
   },
 ]
 
+const { SW_BENCH_SERVICE_KEY, SW_BENCH_COLLECTOR } = process.env
 for (const { port, argv, env } of benches) {
-  const { SW_APM_SERVICE_KEY, SW_APM_COLLECTOR } = process.env
   fork(bench, {
     execArgv: argv,
-    env: { PORT: String(port), SW_APM_SERVICE_KEY, SW_APM_COLLECTOR, ...env },
+    env: {
+      PORT: String(port),
+      SW_APM_SERVICE_KEY: SW_BENCH_SERVICE_KEY,
+      SW_APM_COLLECTOR: SW_BENCH_COLLECTOR,
+      ...env,
+    },
     cwd: dirname(fileURLToPath(import.meta.url)),
   })
 }
 
-const interval = 10 * 1000
+const interval = 1000 / Number(process.env.RPS)
 for await (const _ of setInterval(interval)) {
   const tasks = benches.map(async ({ port, instrumented }) => {
     const start = performance.now()
