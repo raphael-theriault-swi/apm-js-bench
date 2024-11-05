@@ -74,4 +74,6 @@ for await (const _ of setInterval(interval)) {
       console.error(error)
     }
   }
+
+  benches.push(benches.shift())
 }
