@@ -41,7 +41,7 @@ const benches = [
     instrumented: "legacy",
     port: 8282,
     argv: ["--import=solarwinds-apm"],
-    env: { SW_APM_LEGACY: String(true) },
+    env: { SW_APM_LEGACY: String(true), GRPC_DNS_RESOLVER: "native" },
   },
 ]
 
