@@ -59,9 +59,9 @@ for await (const _ of setInterval(interval)) {
   const tasks = benches.map(async ({ port, instrumented }) => {
     const start = performance.now()
     const response = await fetch(`http://localhost:${port}`)
-    const data = await response.json()
     latency.record(performance.now() - start, { instrumented })
 
+    const data = await response.json()
     cpu.user.record(data.cpu.user, { instrumented })
     cpu.system.record(data.cpu.system, { instrumented })
     memory.rss.record(data.memory.rss, { instrumented })
